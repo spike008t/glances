@@ -357,8 +357,8 @@ class GlancesProcesses(object):
             proc['io_counters'] += [io_tag]
 
         # Compute the maximum value for keys in self._max_values_list (CPU, MEM)
-        for k in self._max_values_list:
-            if self.processlist != []:
+        if self.processlist != []:
+            for k in self._max_values_list:
                 self.set_max_values(k, max(i[k] for i in self.processlist
                 if not (i[k] == None)))
 
