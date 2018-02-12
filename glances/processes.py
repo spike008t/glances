@@ -250,7 +250,9 @@ class GlancesProcesses(object):
                                 # OS specifics processes filter
                                 if not (BSD and p.info['name'] == 'idle') and
                                 not (WINDOWS and p.info['name'] == 'System Idle Process') and
-                                not (MACOS and p.info['name'] == 'kernel_task') and
+                                not (MACOS and (p.info['name'] == 'kernel_task'
+                                            or p.info['cpu_percent'] == None
+                                            or p.info['memory_percent'] == None)) and
                                 # Kernel threads filter
                                 not (self.no_kernel_threads and LINUX and p.info['gids'].real == 0) and
                                 # User filter
@@ -262,7 +264,9 @@ class GlancesProcesses(object):
                                 # OS specifics processes filter
                                 if not (BSD and p['name'] == 'idle') and
                                 not (WINDOWS and p['name'] == 'System Idle Process') and
-                                not (MACOS and p['name'] == 'kernel_task') and
+                                not (MACOS and (p.info['name'] == 'kernel_task'
+                                            or p.info['cpu_percent'] == None
+                                            or p.info['memory_percent'] == None)) and
                                 # Kernel threads filter
                                 not (self.no_kernel_threads and LINUX and p['gids'].real == 0) and
                                 # User filter
