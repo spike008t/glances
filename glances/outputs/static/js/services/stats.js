@@ -48,6 +48,11 @@ glancesApp.service('GlancesStats', function ($http, $q, $rootScope, $timeout, Gl
 
         var nextLoad = function () {
             cancelNextLoad();
+
+            if (REFRESH_TIME < 1) {
+                REFRESH_TIME = 1;
+            }
+
             loadPromise = $timeout(refreshData, REFRESH_TIME * 1000); // in milliseconds
         };
 
